@@ -65,11 +65,12 @@ body {
 
 .description {
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .contact-wrapper {
   font-weight: bold;
+  text-align: center;
 }
 
 .contact-details {
@@ -102,6 +103,15 @@ body {
 .phone img {
   width: 20px;
   margin-right: 4px;
+}
+
+.kolo img {
+  width: 30px;
+}
+
+.instagram img {
+  width: 30px;
+  margin-right: 25px;
 }
 
 @media (max-width: 500px) {

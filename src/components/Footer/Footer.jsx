@@ -2,7 +2,7 @@ import constants from "../../constants/common";
 import OurServices from "../OurServices/OurServices";
 import FooterAddress from "./FooterAddress";
 import footerLogo from "./assets/logo-footer.png";
-import instagram from "./assets/instagram.png";
+import instagram from "./assets/Instagram.png";
 import kolo from "./assets/kolo_icon.webp";
 
 const { COMPANY_NAME_SHORT, TAGLINE } = constants;

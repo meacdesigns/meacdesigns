@@ -43,7 +43,7 @@ const items = [
 const HeroCarousel = () => {
   return (
     <div className="pt-16 lg:pt-0">
-      <Carousel>
+      <Carousel autoplay>
         {items.map(({ image, title, tagline }, index) => {
           return (
             <>

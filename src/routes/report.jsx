@@ -15,20 +15,34 @@ const Report = () => {
     fetchData();
   }, []);
 
-  const onChange = (key) => {
-    console.log(key);
-  };
+  const onMarkDone = () => {};
+
+  const onMarkActive = () => {};
 
   const items = [
     {
       key: "1",
       label: `Active`,
-      children: <ReportTable documents={documents} />,
+      children: (
+        <ReportTable
+          rowKey="id"
+          onMarkActive={onMarkActive}
+          type="ACTIVE"
+          documents={documents.filter(({ active }) => active)}
+        />
+      ),
     },
     {
       key: "2",
       label: `Done`,
-      children: <ReportTable documents={documents} />,
+      children: (
+        <ReportTable
+          rowKey="id"
+          onMarkDone={onMarkDone}
+          type="DONE"
+          documents={documents.filter(({ active }) => !active)}
+        />
+      ),
     },
   ];
 
@@ -44,7 +58,7 @@ const Report = () => {
           <Heading2 text={"Report"} />
         </div>
         <div className="pt-6 mb-6">
-          <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+          <Tabs defaultActiveKey="1" items={items} />
         </div>
       </div>
     </div>

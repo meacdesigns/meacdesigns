@@ -2,6 +2,7 @@ import { Button, Form, Input, notification } from "antd";
 import { useState } from "react";
 import { addDocument } from "../../db/firebase";
 import { Heading2 } from "../Heading/Heading";
+import { nanoid } from "nanoid";
 
 import contactImage from "./assets/contact-img.png";
 
@@ -29,6 +30,7 @@ const ContactUsForm = () => {
         data: {
           ...values,
           active: true,
+          id: nanoid(),
           created_on: new Date().toLocaleString("en-IN", { timeZone: "IST" }),
         },
       });
@@ -87,7 +89,7 @@ const ContactUsForm = () => {
                     },
                   ]}
                 >
-                  <Input size="large" placeholder="Your Mobile Number here" />
+                  <Input size="large" maxLength={10} placeholder="Your Mobile Number here" />
                 </Form.Item>
 
                 <Form.Item

@@ -1,6 +1,6 @@
-import { Table } from "antd";
+import { Button, Table } from "antd";
 
-const ReportTable = ({ documents }) => {
+const ReportTable = ({ documents, type, onMarkActive, onMarkDone, rowKey }) => {
   const columns = [
     {
       title: "#",
@@ -34,8 +34,31 @@ const ReportTable = ({ documents }) => {
       dataIndex: "created_on",
       key: "message",
     },
+    {
+      title: "Active",
+      dataIndex: "created_on",
+      render: (_, item) => {
+        return (
+          <>
+            {type === "ACTIVE" && (
+              <Button onClick={() => onMarkDone(item)}>Done</Button>
+            )}
+            {type === "DONE" && (
+              <Button onClick={() => onMarkActive(item)}>Active</Button>
+            )}
+          </>
+        );
+      },
+    },
   ];
-  return <Table scroll={{ x: 1000 }} dataSource={documents} columns={columns} />;
+  return (
+    <Table
+      rowKey={rowKey}
+      scroll={{ x: 1000 }}
+      dataSource={documents}
+      columns={columns}
+    />
+  );
 };
 
 export default ReportTable;

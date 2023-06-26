@@ -31,7 +31,7 @@ const ReportTable = ({ documents }) => {
     },
     {
       title: "Created On",
-      dataIndex: "message",
+      dataIndex: "created_on",
       key: "message",
     },
   ];

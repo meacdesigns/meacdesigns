@@ -26,7 +26,11 @@ const ContactUsForm = () => {
     try {
       const docRef = await addDocument({
         collection_name: "queries",
-        data: values,
+        data: {
+          ...values,
+          active: true,
+          created_on: new Date().toLocaleString("en-IN", { timeZone: "IST" }),
+        },
       });
       setLoading(false);
       openNotification();

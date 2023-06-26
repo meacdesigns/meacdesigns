@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import withPrimaryLayout from "../layout/primary-layout";
-import { getDocuments } from "../db/firebase";
+import { getDocuments, updateDocument } from "../db/firebase";
 import { Heading2 } from "../components/Heading/Heading";
 import ReportTable from "../components/ReportTable/ReportTable";
 
@@ -15,9 +15,15 @@ const Report = () => {
     fetchData();
   }, []);
 
-  const onMarkDone = () => {};
-
-  const onMarkActive = () => {};
+  const onMarkDone = async (id, data) => {
+    await updateDocument({
+      collection_name: "queries",
+      data,
+      id,
+    });
+    const documents = await getDocuments({ collection_name: "queries" });
+    setDocuments(documents);
+  };
 
   const items = [
     {
@@ -26,7 +32,7 @@ const Report = () => {
       children: (
         <ReportTable
           rowKey="id"
-          onMarkActive={onMarkActive}
+          onAction={onMarkDone}
           type="ACTIVE"
           documents={documents.filter(({ active }) => active)}
         />
@@ -38,7 +44,7 @@ const Report = () => {
       children: (
         <ReportTable
           rowKey="id"
-          onMarkDone={onMarkDone}
+          onAction={onMarkDone}
           type="DONE"
           documents={documents.filter(({ active }) => !active)}
         />

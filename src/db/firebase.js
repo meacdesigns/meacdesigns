@@ -1,5 +1,12 @@
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  getFirestore,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -24,6 +31,18 @@ export const addDocument = async ({ collection_name, data }) => {
     await addDoc(collection(db, collection_name), data);
     return true;
   } catch (e) {
+    console.log(e);
+    return false;
+  }
+};
+
+export const updateDocument = async ({ collection_name, id, data }) => {
+  try {
+    const docref = doc(db, collection_name, id);
+    await updateDoc(docref, data);
+    return true;
+  } catch (e) {
+    console.log(e);
     return false;
   }
 };
@@ -32,7 +51,7 @@ export const getDocuments = async ({ collection_name }) => {
   const querySnapshot = await getDocs(collection(db, collection_name));
   const documents = [];
   querySnapshot.forEach((doc) => {
-    documents.push(doc.data());
+    documents.push({ ...doc.data(), db_id: doc.id });
   });
   return documents;
 };

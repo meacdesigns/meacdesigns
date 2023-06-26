@@ -1,6 +1,6 @@
 import { Button, Table } from "antd";
 
-const ReportTable = ({ documents, type, onMarkActive, onMarkDone, rowKey }) => {
+const ReportTable = ({ documents, type, onAction, rowKey }) => {
   const columns = [
     {
       title: "#",
@@ -41,10 +41,26 @@ const ReportTable = ({ documents, type, onMarkActive, onMarkDone, rowKey }) => {
         return (
           <>
             {type === "ACTIVE" && (
-              <Button onClick={() => onMarkDone(item)}>Done</Button>
+              <Button
+                onClick={() =>
+                  onAction(item.db_id, {
+                    active: false,
+                  })
+                }
+              >
+                Done
+              </Button>
             )}
             {type === "DONE" && (
-              <Button onClick={() => onMarkActive(item)}>Active</Button>
+              <Button
+                onClick={() =>
+                  onAction(item.db_id, {
+                    active: true,
+                  })
+                }
+              >
+                Active
+              </Button>
             )}
           </>
         );

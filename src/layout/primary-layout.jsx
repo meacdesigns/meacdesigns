@@ -5,12 +5,14 @@ import Nav from "../components/Nav/Nav";
 const withPrimaryLayout = (WrappedComponent) => {
   const ComponentWithAppContext = (props) => {
     return (
-      <div>
-        <Nav />
-        <WrappedComponent {...props} />
-        <Footer />
-        <ContactFloatingButton />
-      </div>
+      <>
+        <div>
+          <Nav />
+          <WrappedComponent {...props} />
+          <Footer />
+          <ContactFloatingButton />
+        </div>
+      </>
     );
   };
 

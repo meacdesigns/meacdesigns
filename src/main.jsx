@@ -26,18 +26,16 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#ccde02",
-          colorTextBase: "#6a747b",
-          fontFamily: "Poppins, sans-serif",
-          borderRadius: 4
-        },
-      }}
-    >
-      <RouterProvider router={router} />
-    </ConfigProvider>
-  </React.StrictMode>
+  <ConfigProvider
+    theme={{
+      token: {
+        colorPrimary: "#ccde02",
+        colorTextBase: "#6a747b",
+        fontFamily: "Poppins, sans-serif",
+        borderRadius: 4,
+      },
+    }}
+  >
+    <RouterProvider router={router} />
+  </ConfigProvider>
 );
